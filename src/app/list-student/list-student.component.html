@@ -1,0 +1,38 @@
+<table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">StudentCourse</th>
+        <th scope="col">Fees</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of Students; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.date_of_birth | date }}</td>
+        <td>{{ student.course }}</td>
+        <td>{{ student.fees }}</td>
+        <td>
+          <span (click)="removeStudent(student)" class="btn btn-danger mx-2" data-toggle="modal" data-target="#exampleModal"
+            >Delete</span
+          >
+          <span
+            class="btn btn-primary mx-2"
+            (click)="log(student.id)"
+            routerLink="/update/{{ student.id }}"
+            >Edit</span
+          >
+          <span
+            class="btn btn-success mx-2"
+            >View</span
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>

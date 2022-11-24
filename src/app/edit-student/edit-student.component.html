@@ -1,0 +1,64 @@
+<div class="card" style="width: 800px; margin: 0 auto;">
+    <div class="card-header text-center">
+        <h4>Edit the Student</h4>
+    </div>
+    
+    <div class="card-body">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col form-group mx-2 mb-2">
+                    <label class="mb-1" for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control"
+                        [class.is-invalid]="form['name'].invalid && form['name'].touched" formControlName="name"
+                        placeholder="Enter Name">
+                    <div *ngIf="form['name'].touched && form['name'].invalid" class="text-danger">
+                        <small *ngIf="form['name'].errors?.['required']">Name is Required</small>
+                    </div>
+                </div>
+                <div class="col form-group mx-2 mb-2">
+                    <label class="mb-1" for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control"
+                        [class.is-invalid]="form['email'].invalid && form['email'].touched" formControlName="email"
+                        placeholder="Enter Email Address">
+                    <div *ngIf="form['email'].touched && form['email'].invalid" class="text-danger">
+                        <small *ngIf="form['email'].errors?.['required']">Email is Required</small>
+                        <small *ngIf="form['email'].errors?.['email']">Email should be Valid Email</small>
+                    </div>
+                </div>
+            </div>
+                <div class="col form-group mx-2 mb-2">
+                    <label class="mb-1" for="date">Date Of Birth</label>
+                    <input type="date" id="date" name="date" class="form-control"
+                        [class.is-invalid]="form['date_of_birth'].invalid && form['date_of_birth'].touched" formControlName="date_of_birth">
+                    <div *ngIf="form['date_of_birth'].touched && form['date_of_birth'].invalid" class="text-danger">
+                        <small *ngIf="form['date_of_birth'].errors?.['required']">Date of Birth is Required</small>
+                    </div>
+                </div>
+                <div class="col form-group mx-2 mb-2">
+                    <label class="mb-1" for="course">Course</label>
+                    <select type="email" id="course" name="course" class="form-control form-select"
+                        [class.is-invalid]="form['course'].invalid && form['course'].touched" formControlName="course"
+                        placeholder="Select a Course">
+                        <option *ngFor="let option of courses" [value]="option">
+                            {{option}}
+                        </option>
+                    </select>
+                    <div *ngIf="form['course'].touched && form['course'].invalid" class="text-danger">
+                        <small *ngIf="form['course'].errors?.['required']">Course is Required</small>
+                    </div>
+                </div>
+                <div class="col form-group mx-2 mb-2">
+                    <label class="mb-1" for="fees">Fees</label>
+                    <input type="number" id="fees" step="1" name="fees" class="form-control"
+                        [class.is-invalid]="form['fees'].invalid && form['fees'].touched" formControlName="fees">
+                    <div *ngIf="form['fees'].touched && form['fees'].invalid" class="text-danger">
+                        <small *ngIf="form['fees'].errors?.['required']">Date of Birth is Required</small>
+                    </div>
+                </div>
+          <div class="form-group mx-2">
+            <button class="btn btn-success w-100 my-1" [disabled]="!editForm.valid" type="submit">Update</button>
+            <button class="btn btn-warning w-100 my-1" (click)="back()" type="button">Cancel</button>
+          </div>
+        </form>
+    </div>
+</div>
